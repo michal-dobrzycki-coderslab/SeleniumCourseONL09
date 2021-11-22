@@ -1,6 +1,7 @@
 package login;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -24,8 +25,8 @@ public class LoginTest {
     @Test
     public void validUserLogin() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs("asd@asd.co", "asdasdasd");
-        // asercje
+        loginPage.loginAs("michal.dobrzycki@coderslab.pl", "CodersLab");
+        Assert.assertEquals("Automated Tester", loginPage.getLoggedUsername());
     }
 
 
