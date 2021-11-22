@@ -16,17 +16,25 @@ public class LoginTest {
 
     @Before
     public void setUp() {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=authentication");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.get("https://mystore-testlab.coderslab.pl/index.php?controller=authentication");
     }
 
     @Test
     public void validUserLogin() {
         LoginPage loginPage = new LoginPage(driver);
+
         loginPage.loginAs("michal.dobrzycki@coderslab.pl", "CodersLab");
         Assert.assertEquals("Automated Tester", loginPage.getLoggedUsername());
+    }
+
+    @Test
+    public void invalidUserLogin() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginAs("niemausera@coderslab.pl", "niemahasla");
+        Assert.assertEquals("Authentication failed.", loginPage.getLoginUserAlert());
     }
 
 
