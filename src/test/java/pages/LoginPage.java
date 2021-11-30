@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private WebDriver driver;
-
+public class LoginPage extends BasePage {
     @FindBy(name = "email")
     private WebElement emailInput;
 
@@ -25,14 +23,14 @@ public class LoginPage {
     private WebElement userLoginAlert;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public void loginAs(String email, String password) {
-        emailInput.click();
-        emailInput.clear();
-        emailInput.sendKeys(email);
+//        emailInput.click();
+//        emailInput.clear();
+//        emailInput.sendKeys(email);
+        safeSendKeys(emailInput, email);
 
         passwordInput.click();
         passwordInput.clear();

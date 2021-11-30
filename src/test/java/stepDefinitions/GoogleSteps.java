@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +25,7 @@ public class GoogleSteps {
         driver.findElement(By.id("L2AGLb")).click();
     }
 
-    @When("a keyword {string} is entered in input field")
+    @When("^a keyword (.*) is entered in input field$")
     public void enterKeyword(String keyword) {
         WebElement element = driver.findElement(By.name("q"));
         element.clear();
@@ -39,7 +40,7 @@ public class GoogleSteps {
     }
 
 
-    @Then("the first one should contains {string}")
+    @Then("^the first one should contains \"(.*)\"$")
     public void theFirstOneShouldContains(String expectedText) {
         System.out.println(expectedText);
     }
